@@ -1,4 +1,5 @@
 const Feedback = require("../models/Feedback");
+const { feedbackQueue } = require("../config/queue");
 
 //POST
 const createFeedback = async (req, res) =>{
@@ -9,6 +10,11 @@ const createFeedback = async (req, res) =>{
         }
 
         const feedback = await Feedback.create({text, source, createdby: req.user._id});
+        await feedbackQueue.add(
+            "analyze", 
+            {feedbackId: feedback._id.toString()},
+            {attempts: 3, backoff: {type: "exponential", delay: 2000}}
+        );
         res.status(201).json(feedback);
     }
     catch(error){
