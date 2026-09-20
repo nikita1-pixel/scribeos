@@ -3,6 +3,7 @@ const { Worker } = require("bullmq");
 const connectDB = require("../config/db");
 const { connection } = require("../config/queue");
 const Feedback = require("../models/Feedback");
+const { analyzeFeedback } = require("../services/ai.service");
 
 connectDB();
 
@@ -14,11 +15,15 @@ const worker = new Worker(
 
         const feedback = await Feedback.findById(job.data.feedbackId);
         if(!feedback){
-            throw new error (`Feedback ${job.data.feedback} not found`);
+            throw new Error (`Feedback ${job.data.feedback} not found`);
         }
         console.log(` Analyzing : ${feedback.text}`);
 
-        await new Promise((resolve) => setTimeout(resolve, 3000));
+        const analysis = await analyzeFeedback(feedback.text);
+
+        feedback.sentiment = analysis.sentiment;
+        feedback.tags = analysis.tags;
+        feedback.summary = analysis.summary;
         feedback.status = "processed";
         await feedback.save();
 
