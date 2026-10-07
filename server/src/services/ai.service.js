@@ -25,4 +25,25 @@ const analyzeFeedback = async (text) => {
     return JSON.parse(response.text);
 };
 
-module.exports = { analyzeFeedback };
+const embedText = async (text) => {
+    const response = await ai.models.embedContent({
+        model: 'gemini-embedding-001',
+        contents: text,
+        config: { outputDimensionality: 768 },
+    });
+
+    return response.embeddings[0].values;
+};
+const answerQuestion = async (question, context) => {
+    const response = await ai.models.generateContent({
+        model: 'gemini-3.6-flash',
+        contents: `You are a customer-feedback analyst. Answer the user's question using ONLY the feedback provided below. If the feedback doesn't contain
+  enough information, say so honestly — do not make things up.\n\nFeedback:\n${context}\n\nQuestion: ${question}`,
+    });
+
+    return response.text;
+};
+
+
+
+module.exports = { analyzeFeedback, embedText, answerQuestion };

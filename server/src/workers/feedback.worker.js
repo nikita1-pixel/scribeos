@@ -3,7 +3,7 @@ const { Worker } = require("bullmq");
 const connectDB = require("../config/db");
 const { connection } = require("../config/queue");
 const Feedback = require("../models/Feedback");
-const { analyzeFeedback } = require("../services/ai.service");
+const { analyzeFeedback, embedText } = require("../services/ai.service");
 
 connectDB();
 
@@ -24,6 +24,11 @@ const worker = new Worker(
         feedback.sentiment = analysis.sentiment;
         feedback.tags = analysis.tags;
         feedback.summary = analysis.summary;
+
+        const embedding = await embedText(feedback.text);
+        feedback.embedding = embedding;
+        console.log(`Embedded: ${embedding.length} dimensions`);
+
         feedback.status = "processed";
         await feedback.save();
 
