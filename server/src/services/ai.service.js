@@ -1,7 +1,7 @@
 const { GoogleGenAI, Type } = require('@google/genai');
 
 const ai = new GoogleGenAI ({
-    key: process.env.GOOGLE_GENAI_API_KEY
+    key: process.env.GEMINI_API_KEY
 })
 
 const analyzeFeedback = async (text) => {
