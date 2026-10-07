@@ -7,7 +7,8 @@
     "start": "node index.js",
     "start:all": "concurrently \"node index.js\" \"node src/workers/feedback.worker.js\"",
     "worker": "node src/workers/feedback.worker.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed:demo": "node src/scripts/seedDemo.js"
   },
   "keywords": [],
   "author": "",
