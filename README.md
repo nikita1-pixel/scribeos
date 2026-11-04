@@ -53,12 +53,12 @@ Product managers and customer success teams collect feedback across scattered ch
 
 - [x] **Phase 1 — Project Scaffold:** Express server configuration, Vite/React client setup, single root Git repository, strict `.gitignore` configurations.
 - [x] **Phase 2 — JWT Auth & Synchronous Feedback CRUD:** Mongoose schemas (`User`, `Feedback`), custom authentication gatekeeper middleware (`protect`), password hashing via salted bcrypt hooks, and user-scoped resource ownership verification.
-- [ ] **Phase 3 — Queue Broker (BullMQ + Redis):** Decoupling ingestion from heavy workloads via an asynchronous background job pipeline.
-- [ ] **Phase 4 — Worker & Groq LLM Engine:** Automated sentiment extraction, thematic tagging, and handling external API rate limits with exponential backoff and DLQs.
-- [ ] **Phase 5 — Vector Embeddings & MongoDB Atlas Vector Search:** Generating semantic embeddings for meaning-based query retrieval.
-- [ ] **Phase 6 — RAG Pipeline:** Context-bounded generation for customer reply drafts and trend synthesis.
-- [ ] **Phase 7 — Real-Time Client Dispatch:** Live status push via Socket.io to eliminate polling.
-- [ ] **Phase 8 — Production Deployment & CI/CD:** Multi-stage containerization, cloud hosting, and automated testing suites.
+- [x] **Phase 3 — Queue Broker (BullMQ + Redis):** Decoupling ingestion from heavy workloads via an asynchronous background job pipeline.
+- [x] **Phase 4 — Worker & Groq LLM Engine:** Automated sentiment extraction, thematic tagging, and handling external API rate limits with exponential backoff and DLQs.
+- [x] **Phase 5 — Vector Embeddings & MongoDB Atlas Vector Search:** Generating semantic embeddings for meaning-based query retrieval.
+- [x] **Phase 6 — RAG Pipeline:** Context-bounded generation for customer reply drafts and trend synthesis.
+- [x] **Phase 7 — Real-Time Client Dispatch:** Live status push via Socket.io to eliminate polling.
+- [x] **Phase 8 — Production Deployment & CI/CD:** Multi-stage containerization, cloud hosting, and automated testing suites.
 
 ---
 
